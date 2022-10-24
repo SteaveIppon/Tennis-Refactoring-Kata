@@ -9,8 +9,13 @@ class Deuce implements ResultProvider {
 
     @Override
     public TennisResult getResult() {
-        if (game.isDeuce())
+        if (this.checkScore())
             return new TennisResult("Deuce", "");
         return this.nextResult.getResult();
+    }
+
+    @Override
+    public boolean checkScore() {
+        return this.game.getServer().getScore() >= 3 && this.game.getReceiver().getScore() >= 3 && (this.game.getServer().getScore() == this.game.getReceiver().getScore());
     }
 }

@@ -12,4 +12,9 @@ class DefaultResult implements ResultProvider {
     public TennisResult getResult() {
         return new TennisResult(scores[game.getServer().getScore()], scores[game.getReceiver().getScore()]);
     }
+
+    @Override
+    public boolean checkScore() {
+        return true;
+    }
 }

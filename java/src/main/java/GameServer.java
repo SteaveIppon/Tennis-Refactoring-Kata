@@ -9,8 +9,13 @@ class GameServer implements ResultProvider {
 
     @Override
     public TennisResult getResult() {
-        if (game.serverHasWon())
+        if (this.checkScore())
             return new TennisResult("Win for " + game.server, "");
         return this.nextResult.getResult();
+    }
+
+    @Override
+    public boolean checkScore() {
+        return this.game.getServer().getScore() >= 4 && (this.game.getServer().getScore() - this.game.getReceiver().getScore()) >= 2;
     }
 }

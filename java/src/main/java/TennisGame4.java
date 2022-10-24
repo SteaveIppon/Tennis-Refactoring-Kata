@@ -36,25 +36,5 @@ public class TennisGame4 implements TennisGame {
     public Player getReceiver() {
         return this.receiver;
     }
-
-    boolean receiverHasAdvantage() {
-        return this.getReceiver().getScore() >= 4 && (this.getReceiver().getScore() - this.getServer().getScore()) == 1;
-    }
-
-    boolean serverHasAdvantage() {
-        return this.getServer().getScore() >= 4 && (this.getServer().getScore() - this.getReceiver().getScore()) == 1;
-    }
-
-    boolean receiverHasWon() {
-        return this.getReceiver().getScore() >= 4 && (this.getReceiver().getScore() - this.getServer().getScore()) >= 2;
-    }
-
-    boolean serverHasWon() {
-        return this.getServer().getScore() >= 4 && (this.getServer().getScore() - this.getReceiver().getScore()) >= 2;
-    }
-
-    boolean isDeuce() {
-        return this.getServer().getScore() >= 3 && this.getReceiver().getScore() >= 3 && (this.getServer().getScore() == this.getReceiver().getScore());
-    }
 }
 
