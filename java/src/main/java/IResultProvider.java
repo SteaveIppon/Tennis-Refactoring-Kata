@@ -1,0 +1,3 @@
+interface IResultProvider {
+    TennisResult getResult();
+}
