@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class TennisGame4 implements TennisGame {
 
     Player server;
@@ -18,13 +21,18 @@ public class TennisGame4 implements TennisGame {
 
     @Override
     public String getScore() {
-        TennisResult result = new Deuce(
-                this, new GameServer(
-                        this, new GameReceiver(
-                                this, new AdvantageServer(
-                                        this, new AdvantageReceiver(
-                                                this, new DefaultResult(this)))))).getResult();
-        return result.format();
+        List<ResultProvider> results = new ArrayList<>();
+        results.add(new Deuce(this));
+        results.add(new GameServer(this));
+        results.add(new GameReceiver(this));
+        results.add(new AdvantageServer(this));
+        results.add(new AdvantageReceiver(this));
+
+        for(ResultProvider result : results)
+            if(result.checkScore())
+                return result.getResult().format();
+
+        return new DefaultResult(this).getResult().format();
     }
 
     @Override

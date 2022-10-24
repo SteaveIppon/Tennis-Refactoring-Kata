@@ -1,17 +1,13 @@
 class GameReceiver implements ResultProvider {
     private final TennisGame4 game;
-    private final ResultProvider nextResult;
 
-    public GameReceiver(TennisGame4 game, ResultProvider nextResult) {
+    public GameReceiver(TennisGame4 game) {
         this.game = game;
-        this.nextResult = nextResult;
     }
 
     @Override
     public TennisResult getResult() {
-        if (this.checkScore())
-            return new TennisResult("Win for " + game.receiver, "");
-        return this.nextResult.getResult();
+        return new TennisResult("Win for " + game.receiver, "");
     }
 
     @Override
